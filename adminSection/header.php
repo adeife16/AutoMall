@@ -24,6 +24,7 @@ if (!isset($_SESSION['id']))
 
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/default.css">
 
   <!-- Data tables -->
   <!-- <link rel="stylesheet" href="/css/jquery.dataTables.min.css"> -->
@@ -39,11 +40,11 @@ if (!isset($_SESSION['id']))
     <ul class="navbar-nav blue sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard.php">
+      <a class="sidebar-brand d-flex justify-content-center" href="dashboard.php">
         <div class="sidebar-brand-icon">
-          <img src="img/logo.png" class="logo" alt="JAAD LOGO">
+          <img src="img/logo.svg" style="max-width: 30px !important;" class="logo" alt="AUTOMALL LOGO">
         </div>
-        <div class="sidebar-brand-text">JAADLOGISTICS</div>
+        <div class="sidebar-brand-text" style="font-size: 24px">AUTOMALL</div>
       </a>
 
       <!-- Divider -->
@@ -58,14 +59,14 @@ if (!isset($_SESSION['id']))
         <!-- Riders -->
         <li class="nav-item">
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-            <i class="fas fa-fw fa-biking"></i>
-            <span>Riders</span>
+            <i class="fas fa-fw fa-tags"></i>
+            <span>Products</span>
           </a>
           <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-              <a class="collapse-item" href="rider_search.php">Search</a>
-              <a class="collapse-item" href="riders.php">View All</a>
-              <a class="collapse-item" href="rider_data">Data Center</a>
+              <a class="collapse-item" href="products.php">Search</a>
+              <a class="collapse-item" href="category.php">Categories</a>
+              <a class="collapse-item" href="sub_cat.php">Sub-catogories</a>
             </div>
           </div>
         </li>
@@ -73,14 +74,14 @@ if (!isset($_SESSION['id']))
         <!-- Companies -->
         <li class="nav-item">
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-            <i class="fas fa-fw fa-hotel"></i>
-            <span>Companies</span>
+            <i class="fas fa-fw fa-users"></i>
+            <span>Users</span>
           </a>
           <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-              <a class="collapse-item" href="utilities-color.html">Search</a>
-              <a class="collapse-item" href="utilities-border.html">View All</a>
-              <a class="collapse-item" href="utilities-animation.html">Data Center</a>
+              <!-- <a class="collapse-item" href="utilities-color.html">Search</a> -->
+              <a class="collapse-item" href="merchants.php">Merchants</a>
+              <a class="collapse-item" href="buyers.php">Buyers</a>
               <!-- <a class="collapse-item" href="utilities-other.html">Other</a> -->
             </div>
           </div>
@@ -161,9 +162,8 @@ if (!isset($_SESSION['id']))
 
                       </span>
                       <a class="dropdown-item blue text-center small text-gray-500" href="#">Show All Alerts</a>
-                    </div>CusCus
+                    </div>
                   </li>
-CusCus
                   <!-- Nav Item - User Information -->
                   <li class="nav-item dropdown no-arrow">
                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

@@ -62,19 +62,18 @@
   <script src="ajax/profile.js" charset="utf-8"></script>
 <?php endif; ?>
 <!-- request page script -->
-<?php if ($title == "Request"): ?>
-  <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-  <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+<?php if ($title == "Product Category"): ?>
+  <script src="vendor/datatables/datatables.min.js"></script>
 
-  <script src="js/request.js" charset="utf-8"></script>
-  <script src="ajax/request.js" charset="utf-8"></script>
+  <script src="js/product_category.js" charset="utf-8"></script>
+  <script src="ajax/product_category.js" charset="utf-8"></script>
 <?php endif; ?>
-<?php if ($title == "Rider Search"): ?>
-  <link rel="stylesheet" href="/css/jquery.dataTables.min.css">
-  <script src="js/jquery.dataTables.min.js" charset="utf-8"></script>
+<?php if ($title == "Sub Category"): ?>
 
-  <script src="js/rider_search.js" charset="utf-8"></script>
-  <script src="ajax/rider_search.js" charset="utf-8"></script>
+  <script src="vendor/datatables/datatables.min.js"></script>
+
+  <script src="js/sub_category.js" charset="utf-8"></script>
+  <script src="ajax/sub_category.js" charset="utf-8"></script>
 
 <?php endif; ?>
 
