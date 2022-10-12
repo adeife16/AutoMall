@@ -19,7 +19,7 @@
     $hostname = 'localhost';
     $user = 'root';
     $pass = '';
-    $dbname = 'logistics';
+    $dbname = 'aseyoriNiTemi';
 
     // $success = array();
     // $error = array();

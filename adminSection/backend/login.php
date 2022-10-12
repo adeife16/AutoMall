@@ -17,7 +17,7 @@ if(isset($_POST['email']) && $_POST['email'] != "")
 
   else
   {
-    $stmt = "SELECT * FROM admin WHERE email = ?";
+    $stmt = "SELECT * FROM am_admin WHERE email = ?";
     $get_stmt = mysqli_prepare($con, $stmt);
     mysqli_stmt_bind_param($get_stmt, "s", $email);
     mysqli_execute($get_stmt);

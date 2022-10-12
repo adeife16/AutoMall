@@ -5,7 +5,7 @@ $json = array();
 $data = array();
 
 // get all dashboard data
-if(isset($_POST['getSession']))
+if(isset($_GET['getSession']))
 {
   if(!isset($_SESSION['id']))
   {

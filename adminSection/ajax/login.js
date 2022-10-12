@@ -26,7 +26,6 @@ function login(email, pass){
   })
   .fail(function() {
     console.log("error");
-
   })
   // .always(function() {
   //   console.log("complete");
