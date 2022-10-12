@@ -5,7 +5,8 @@ body {
   font-weight: normal;
   font-style: normal;
   color: #6D7588;
-  background-color: #dee4ef;
+  /* background-color: #dee4ef; */
+  background-color: #fff;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   }
@@ -3405,6 +3406,7 @@ p {
   overflow: hidden;
 }
 
+
 .bar {
   float: left;
   background: #FFF;
@@ -3427,10 +3429,11 @@ p {
 /*  Custom Colors*/
 
 .color-red{
-  color: #d32d29 !important;
+  /* color: #d32d29 !important; */
+  color: #a63538 !important;
 }
 .red{
-  background-color: #d32d29 !important;
+  background-color: #a63538 !important;
 }
 .color-green{
   color: #3bd329 !important;
