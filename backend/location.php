@@ -8,7 +8,7 @@
 
     if(isset($_POST['get_states']))
     {
-        $get_states = mysqli_query($con, "SELECT * FROM states");
+        $get_states = mysqli_query($con, "SELECT * FROM am_state");
 
         if($get_states)
         {
