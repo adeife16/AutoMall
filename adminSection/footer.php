@@ -76,6 +76,12 @@
   <script src="ajax/sub_category.js" charset="utf-8"></script>
 
 <?php endif; ?>
+<?php if ($title == "Admins"): ?>
+
+  <script src="js/admins.js" charset="utf-8"></script>
+  <script src="ajax/admins.js" charset="utf-8"></script>
+
+<?php endif; ?>
 
 <!-- Page level plugins -->
 <!-- <script src="vendor/chart.js/Chart.min.js"></script> -->

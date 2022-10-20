@@ -1,15 +1,15 @@
 $(document).ready(function() {
   getSession();
-  getNewRequest();
+  setLogoutTimer();
+
 });
 
 // get session details from backend
 function getSession(){
   $.ajax({
-    url: 'backend/session.php',
-    type: 'POST',
+    url: 'backend/session.php?getSession',
+    type: 'GET',
     cache: false,
-    data: {getSession: ''}
   })
   .done(function(response) {
     // if response status is success, create session variables
@@ -55,37 +55,30 @@ function getSession(){
     }
   }
 
-  function getNewRequest(){
-    $.ajax({
-      url: 'backend/dashboard.php',
-      type: 'POST',
-      cache: false,
-      data: {getRequest: 'value1'}
-    })
-    .done(function(response) {
-      data = JSON.parse(response);
-      showNewRequest(data);
-    })
-    // .fail(function() {
-    //   console.log("error");
-    // })
-    // .always(function() {
-    //   console.log("complete");
-    // });
+function setLogoutTimer() {
+var myTimeout;
+if (window.sessionStorage) {
 
-  }
-
-  // display request notification
-  function showNewRequest(data){
-    if(data.length < 10){
-      $("#request-alert").html(data.length);
-    }
-    else{
-      $("#request-alert").html('9+');
+    myTimeout = sessionStorage.timeoutVar;
+    if (myTimeout) {
+        clearTimeout(myTimeout);
     }
 
-      for(var req in data){
-        $("#alert-list").append('<a class="dropdown-item d-flex align-items-center" href="request.php?companyid='+data[req].company_id+'?rideid='+data[req].rider_id+'"><div><div class="small text-gray-500">'+data[req].date_issued+'</div><span class="font-weight-bold"> '+data[req].company_name+' has requested to employ '+data[req].rider_name+'</span></div></a>');
+}
 
-      }
-  }
+myTimeout = setTimeout(function () { logoutNow(); }, 1800000);  //adjust the time.
+if (window.sessionStorage) {
+    sessionStorage.timeoutVar = myTimeout;
+}
+}
+
+function logoutNow() {
+if (window.sessionStorage) {
+    sessionStorage.timeoutVar = null;
+}
+//MAKE AN AJAX CALL HERE THAT WILL CALL YOUR FUNCTION IN
+// CONTROLLER AND RETURN A URL TO ANOTHER PAGE
+      sessionStorage.clear();
+
+window.location.replace('logout.php')
+}

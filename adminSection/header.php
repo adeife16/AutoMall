@@ -79,9 +79,9 @@ if (!isset($_SESSION['id']))
           </a>
           <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-              <!-- <a class="collapse-item" href="utilities-color.html">Search</a> -->
               <a class="collapse-item" href="merchants.php">Merchants</a>
               <a class="collapse-item" href="buyers.php">Buyers</a>
+              <a class="collapse-item" href="admins.php">Admins</a>
               <!-- <a class="collapse-item" href="utilities-other.html">Other</a> -->
             </div>
           </div>
