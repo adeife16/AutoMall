@@ -19,7 +19,7 @@
     $hostname = 'localhost';
     $user = 'root';
     $pass = '';
-    $dbname = 'logistics';
+    $dbname = 'aseyoriNiTemi';
 
     // $success = array();
     // $error = array();
@@ -36,8 +36,7 @@
 
     $email_link = 'apextech2010@outlook.com';
 
-    // $web_link = 'https://jaadlogistics.herokuapp.com/';
-    $web_link = 'http://localhost/logistics/';
-      // $web_link = 'http://adeinfo.hyperphp.com/';
+    $web_link = 'http://localhost/automall/';
+      // $web_link = 'http://www.automall.epizy.com/';
 
     session_start();
