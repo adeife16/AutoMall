@@ -1,63 +1,32 @@
-$('.preloader').removeClass("hide");
-$(document).ready(function() {
-  var url = window.location.href;
-  url = url.split('=');
-  var type = url[2];
-  url = url[1];
-  url = url.split("?");
-  url = url[0];
-  if(url != ""){
-    if(type == "company"){
-
+// verify buyer's account
+function verifyBuyer(data){
       $.ajax({
-        type: 'POST',
-        url: 'backend/company_signup.php',
-        data: {
-          company_verify: url
-        },
-        beforeSend: function(){
-        }
+            type: 'POST',
+            url: 'backend/verify.php',
+            data: {
+                  verify: data
+            },
+            beforeSend: function(){
+            }
       })
-      .done(function(response){
+      .done(function(res){
+            console.log(res);
+            let data = JSON.parse(res)
+            if(data === "success"){
+                  $('.message-box').html(`
+                    <div class="p-3 text-center green">
+                        <p class="color-white">You account has been activated successfully. You are being redirected to the login page</p>
+                    </div>
+                  `)
+                  setTimeout(function(){window.location.replace('login.php')},3000);
+            }
+            else{
+                  $('.message-box').html(`
+                        <div class="p-3 text-center green">
+                        <p class="color-white">You account has been activated successfully. You are being redirected to the login page</p>
+                        </div>
+                        `);
 
-        if(response == "success"){
-          $('.preloader').addClass("hide");
-          setTimeout(function(){window.location.href = 'login.php'},3000);
-        }
-        else{
-          $('.preloader').addClass("hide");
-          $('.message').html('VERIFICATION FAILED PLEASE TRY AGAIN!')
-          setTimeout(function(){window.location.href = 'index.php'},3000);
-
-        }
+            }
       })
-    }
-    else{
-      $.ajax({
-        type: 'POST',
-        url: 'backend/rider_signup.php',
-        data: {
-          rider_verify: url
-        },
-        beforeSend: function(){
-          // $('.preloader').fadeIn();
-        }
-      })
-      .done(function(response){
-
-        if(response == "success"){
-          $('.preloader').addClass("hide");
-          $('.message').html('CONGRATULATIONS! YOUR ACCOUNT HAS BEEN ACTIVATED YOU\'LL BE REDIRECTED TO THE LOGIN PAGE.')
-          setTimeout(function(){window.location.href = 'login.php'},3000);
-        }
-        else{
-          $('.preloader').addClass("hide");
-          $('.message').html('VERIFICATION FAILED PLEASE TRY AGAIN!')
-          setTimeout(function(){window.location.href = 'index.php'},3000);
-
-        }
-      })
-
-    }
-  }
-});
+}
