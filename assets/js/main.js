@@ -3,20 +3,13 @@ $(function () {
   "use strict";
 
   //===== Prelooder
-
+  //
   $(window).on('load', function (event) {
-    $('.preloader').addClass("hide");
+
   });
 
-  function preloader(num){
-    var num = num
-    if(num == 1){
-      $('.preloader').fadeIn();
-    }
-    if(num == 0){
-      $('.preloader').delay(500).fadeOut(500);
-
-    }
+  function hideLoader(){
+      $('.preloader').fadeOut(500);
   }
   // Change logo on scroll down
 
@@ -199,6 +192,7 @@ $(function () {
         setSession(session_details);
       }
       else{
+
       }
       });
       // .fail(function() {
