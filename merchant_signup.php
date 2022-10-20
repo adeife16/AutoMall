@@ -1,5 +1,5 @@
 <?php
-    $title = "Sign Up";
+    $title = "Sign Up-Merchant";
     require_once 'header.php';
 ?>
 <style media="screen">
@@ -20,8 +20,8 @@
         <div class="row justify-content-center">
             <div class="col-md-6 col-lg-4 contain col-xl-4 col-sm-12">
                 <div class="signup-box red-border p-3" style="border-radius: 10px">
-                    <h2 class="text-center ">SIGNUP</h2>
-                    <form class="form" action="" method="post" name="signup-form" id="signup-form">
+                    <h2 class="text-center ">SIGNUP-MERCHANT</h2>
+                    <form class="form" action="" method="post" name="merchant-signup-form" id="merchant-signup-form">
                         <div class="form-group">
                           <label for="fname">First Name</label>
                           <input type="text" class="form-control" id="fname" name="fname" placeholder="First Name">
@@ -29,6 +29,10 @@
                         <div class="form-group">
                           <label for="lname">Last Name</label>
                           <input type="text" class="form-control" id="lname" name="lname" placeholder="Last Name">
+                        </div>
+                        <div class="form-group">
+                          <label for="company">Company Name</label>
+                          <input type="text" class="form-control" id="company" name="company" placeholder="Company Name">
                         </div>
                         <div class="form-group">
                             <span for="email">Email</span>
@@ -60,8 +64,8 @@
                             <div class="preview text-center">
                                 <img src="" alt="" id="image-preview">
                             </div>
-                          <label for="picture">Picture</label>
-                          <input type="file" class="form-control" id="picture" name="picture">
+                          <label for="logo">Company Logo</label>
+                          <input type="file" class="form-control" id="logo" name="logo">
                           <!-- <small class="color-red">File size limit: 1Mb</small> -->
                         </div>
                         <div class="form-group text-center">
@@ -70,7 +74,7 @@
                     </form>
                     <hr>
                     <div class="">
-                        <p class="text-center"><a href="merchant_signup.php">Sign up as merchant</a></p>
+                        <p class="text-center"><a href="signup.php">Sign up as buyer</a></p>
                     </div>
                 </div>
             </div>
