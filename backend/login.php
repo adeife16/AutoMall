@@ -11,15 +11,12 @@
 
     if($email == "" && $password == "")
     {
-      $request = array('status' =>  'empty');
-      array_push($json, $request);
 
-      print json_encode($json);
     }
-    // Check if account exist in company table
+    // Check if account exist in merchant table
     else
     {
-      $stmt = "SELECT * FROM company WHERE company_email = ?";
+      $stmt = "SELECT * FROM am_merchant WHERE email = ?";
       $get_stmt = mysqli_prepare($con, $stmt);
       mysqli_stmt_bind_param($get_stmt, "s", $email);
       mysqli_stmt_execute($get_stmt);
@@ -31,9 +28,9 @@
         while($row = mysqli_fetch_assoc($result))
         {
           $password_hash = $row['password'];
-          $company_id = $row['company_id'];
+          $merchant_id = $row['merchant_id'];
           $company_name = $row['company_name'];
-          $company_email = $row['company_email'];
+          $company_email = $row['email'];
           $status = $row['status'];
 
 
@@ -41,11 +38,11 @@
         if(password_verify($password, $password_hash))
         {
 
-          $_SESSION['id'] = $company_id;
+          $_SESSION['id'] = $merchant_id;
           $_SESSION['name'] = $company_name;
           $_SESSION['email'] = $company_email;
           $_SESSION['status'] = $status;
-          $_SESSION['session_type'] = "company";
+          $_SESSION['session_type'] = "merchant";
 
           $request = array("status" => "success");
           array_push($json, $request);
@@ -64,10 +61,10 @@
           print json_encode($json);
         }
       }
-      // if account not exist in company table, check rider table
+      // if account not exist in company table, check buyer table
       else
       {
-        $stmt = "SELECT * FROM rider WHERE email = ?";
+        $stmt = "SELECT * FROM am_buyer WHERE email = ?";
         $get_stmt = mysqli_prepare($con, $stmt);
         mysqli_stmt_bind_param($get_stmt, "s", $email);
         mysqli_stmt_execute($get_stmt);
@@ -79,18 +76,18 @@
           while($row = mysqli_fetch_assoc($result))
           {
             $password_hash = $row['password'];
-            $rider_id = $row['rider_id'];
-            $rider_name = $row['first_name'].' '.$row['last_name'];
-            $rider_email = $row['email'];
-            $rider_status = $row['status'];
+            $buyer_id = $row['buyer_id'];
+            $buyer_name = $row['fname'].' '.$row['lname'];
+            $buyer_email = $row['email'];
+            $buyer_status = $row['status'];
           }
           if(password_verify($password, $password_hash))
           {
-            $_SESSION['id'] = $rider_id;
-            $_SESSION['name'] = $rider_name;
-            $_SESSION['email'] = $rider_email;
-            $_SESSION['status'] = $rider_status;
-            $_SESSION['session_type'] = "rider";
+            $_SESSION['id'] = $buyer_id;
+            $_SESSION['name'] = $buyer_name;
+            $_SESSION['email'] = $buyer_email;
+            $_SESSION['status'] = $buyer_status;
+            $_SESSION['session_type'] = "buyer";
 
             $request = array("status" => "success");
             array_push($json, $request);
