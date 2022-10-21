@@ -15,7 +15,17 @@
         border-radius: 10px;
         display: none;
     }
+    .message{
+        width: max-content;
+        border-radius: 10px;
+        position: absolute;
+        right: 20px;
+        margin-right: 20px;
+    }
 </style>
+<div class="message red p-3 hide">
+    <p class="color-white">An error has occurred please try again</p>
+</div>
     <div class="container-fluid pt-5">
         <div class="row justify-content-center">
             <div class="col-md-6 col-lg-4 contain col-xl-4 col-sm-12">
