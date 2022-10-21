@@ -25,9 +25,9 @@
       {
         $activate = mysqli_query($con, "UPDATE am_merchant SET status = 'active' WHERE email='$email'");
       }
-      $stmt = "DELETE FROM am_verify WHERE email = ? AND token = ?";
+      $stmt = "DELETE FROM am_verify WHERE email = ?";
       $del = mysqli_prepare($con, $stmt);
-      mysqli_stmt_bind_param($del, 'ss', $email, $token);
+      mysqli_stmt_bind_param($del, 's', $email);
       mysqli_execute($del);
       if(mysqli_affected_rows($con) == 1)
       {
