@@ -27,6 +27,9 @@
               </div>
             `)
           }
+          else{
+            $(".message").removeClass('hide');
+          }
       })
       .fail(function() {
         console.log("error");
@@ -164,6 +167,9 @@
                   <p class="color-white">Account created successfully. Check your mail for futher instructions in activating your account</p>
               </div>
             `)
+          }
+          else{
+            $(".message").removeClass("hide");
           }
         })
       .fail(function() {
