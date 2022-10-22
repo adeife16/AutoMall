@@ -1,4 +1,8 @@
 <?php
+    session_start();
+    if (isset($_SESSION['id']) && $_SESSION['id'] != "") {
+        header('location: index.php');
+    }
     $title = "Login";
     require_once 'header.php';
 ?>
@@ -12,7 +16,7 @@
         margin-right: 20px;
     }
 </style>
-    <div class="message  red p-3">
+    <div class="message hide red p-3">
         <p class="color-white">Invalid login details</p>
     </div>
     <div class="container-fluid pt-5">

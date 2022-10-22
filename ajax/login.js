@@ -12,6 +12,13 @@ function login(){
   .done(function(res) {
     let data = JSON.parse(res);
     console.log(data);
+    if(data[0].status === "success"){
+      // setSession(data[1]);
+      window.location.replace('index.php');
+    }
+    else{
+      $(".message").removeClass('hide');
+    }
   })
   .fail(function() {
     console.log("error");
