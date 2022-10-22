@@ -1,3 +1,4 @@
+localStorage.clear();
 (function ($) {
     "use strict";
 
@@ -106,3 +107,112 @@
     });
 
 })(jQuery);
+  // get session details from backend
+  function getSession(){
+    $.ajax({
+      url: 'backend/session.php?getSession=get',
+      type: 'GET',
+      cache: false,
+    })
+    .done(function(response) {
+      // if response status is success, create session variables
+      data = JSON.parse(response);
+      if(data[0].status == "success"){
+        var session_details = data[1];
+        setSession(session_details);
+      }
+      else{
+        // window.location.replace ('logout.php');
+      }
+      });
+    }
+
+    // Hide or display login and signup, profile and logout link depending on session availability
+    function setSession(session_details){
+      if(session_details === null){
+        // window.location.replace ('logout.php');
+      }
+      else{
+        sessionStorage.clear();
+        for(var index in session_details) {
+          sessionStorage.setItem(index, session_details[index]);
+        }
+      }
+      var sessionId = sessionStorage.getItem("session_id");
+      var sessionType = sessionStorage.getItem("session_type");
+      var session_name = sessionStorage.getItem("session_name");
+      if(sessionId == "" || sessionId === null){
+
+        // window.location.replace ('logout.php');
+
+      }
+      else{
+        // $("#has-access").toggleClass('hide');
+        // $("#access1, #access2").toggleClass('hide');
+        // $("#sessionUser").append(sessionStorage.getItem("session_name"));
+        // Include Rider or Company search in header
+        if(sessionType == 'merchant'){
+            $("#session").html(`
+                <div class="dropdown">
+                  <a class="dropdown" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+                    `+session_name+`
+                  </a>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="profile.php">Profile</a>
+                    <a class="dropdown-item" href="dashboard.php">Dashboard</a>
+                    <a class="dropdown-item" href="logout.php">Logout</a>
+                  </div>
+                </div>
+                `)
+        }
+        else if(sessionType == 'buyer'){
+            $("#session").html(`
+                <div class="dropdown">
+                  <a class="dropdown" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+                    `+session_name+`
+                  </a>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="profile.php">Profile</a>
+                    <a class="dropdown-item" href="logout.php">Logout</a>
+                  </div>
+                </div>
+                `)
+        }
+        else {
+
+        }
+
+
+      }
+    }
+function setLogoutTimer() {
+var myTimeout;
+if (window.sessionStorage) {
+
+    myTimeout = sessionStorage.timeoutVar;
+    if (myTimeout) {
+        clearTimeout(myTimeout);
+    }
+
+}
+
+myTimeout = setTimeout(function () { logoutNow(); }, 1800000);  //adjust the time.
+if (window.sessionStorage) {
+    sessionStorage.timeoutVar = myTimeout;
+}
+}
+
+function logoutNow() {
+if (window.sessionStorage) {
+    sessionStorage.timeoutVar = null;
+}
+//MAKE AN AJAX CALL HERE THAT WILL CALL YOUR FUNCTION IN
+// CONTROLLER AND RETURN A URL TO ANOTHER PAGE
+      sessionStorage.clear();
+
+window.location.replace('logout.php')
+}
+$(document).ready(function() {
+    getSession();
+      setLogoutTimer();
+});

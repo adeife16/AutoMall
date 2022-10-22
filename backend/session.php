@@ -4,7 +4,7 @@ require_once 'functions.php';
 $json = array();
 $data = array();
 
-if(isset($_POST['getSession']))
+if(isset($_GET['getSession']))
 {
   if(!isset($_SESSION['id']))
   {

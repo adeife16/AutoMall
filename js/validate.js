@@ -146,7 +146,6 @@
     errorClass: "invalid",
     submitHandler: function(form) {
       let formdata = new FormData(document.getElementById('merchant-signup-form'));
-      console.log(formdata);
       $.ajax({
         url: 'backend/merchant_signup.php',
         type: 'POST',

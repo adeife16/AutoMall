@@ -3,18 +3,11 @@
     error_reporting(-1);
     // error_reporting(0);
 
-    // $cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
-    // $hostname = $cleardb_url["host"];
-    // $user = $cleardb_url["user"];
-    // $pass = $cleardb_url["pass"];
-    // $dbname = substr($cleardb_url["path"],1);
-    // $active_group = 'default';
-    // $query_builder = TRUE;
-    //
-    // $hostname = 'sql202.hyperphp.com';
-    // $user = 'hp_28507677';
-    // $pass = 'J@LD4Tdu.giZPZd';
-    // $dbname = 'hp_28507677_tft';
+
+    // $hostname = 'sql307.epizy.com';
+    // $user = 'epiz_32682260';
+    // $pass = 'q5ziiZ90nSG';
+    // $dbname = 'epiz_32682260_automall';
 
     $hostname = 'localhost';
     $user = 'root';
@@ -28,7 +21,7 @@
 
         if (!$con) {
 
-            header("location: error.php");
+            // header("location: error.php");
             echo "<script>alert('Database not connected!')";
             // array_push($error, mysqli_error($con));
 
@@ -36,7 +29,7 @@
 
     $email_link = 'apextech2010@outlook.com';
 
-    $web_link = 'http://localhost/automall/';
-      // $web_link = 'http://www.automall.epizy.com/';
+    // $web_link = 'http://localhost/automall/';
+      $web_link = 'http://www.automall.epizy.com/';
 
     session_start();
