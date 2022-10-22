@@ -1,4 +1,8 @@
 <?php
+    session_start();
+    if (isset($_SESSION['id']) && $_SESSION['id'] != "") {
+        header('location: index.php');
+    }
     $title = "Sign Up";
     require_once 'header.php';
 ?>
