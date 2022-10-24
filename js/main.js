@@ -147,10 +147,8 @@ localStorage.clear();
 
       }
       else{
-        // $("#has-access").toggleClass('hide');
-        // $("#access1, #access2").toggleClass('hide');
-        // $("#sessionUser").append(sessionStorage.getItem("session_name"));
         // Include Rider or Company search in header
+
         if(sessionType == 'merchant'){
             $("#session").html(`
                 <div class="dropdown">
@@ -196,7 +194,7 @@ if (window.sessionStorage) {
 
 }
 
-myTimeout = setTimeout(function () { logoutNow(); }, 1800000);  //adjust the time.
+myTimeout = setTimeout(function () { logoutNow(); }, 18000000);  //adjust the time.
 if (window.sessionStorage) {
     sessionStorage.timeoutVar = myTimeout;
 }
@@ -212,7 +210,35 @@ if (window.sessionStorage) {
 
 window.location.replace('logout.php')
 }
+
+// fingerprint
+if (window.requestIdleCallback) {
+    requestIdleCallback(function () {
+        Fingerprint2.get(function (components) {
+            var values = components.map(function (component) { return component.value })
+            var murmur = Fingerprint2.x64hash128(values.join(''), 31);
+            sessionStorage.setItem("fingerprint", murmur);
+        })
+    })
+} else {
+    setTimeout(function () {
+        Fingerprint2.get(function (components) {
+            var values = components.map(function (component) { return component.value })
+            var murmur = Fingerprint2.x64hash128(values.join(''), 31);
+            sessionStorage.setItem("fingerprint", murmur);
+        })
+    }, 500)
+}
+
+// get fingerprint
+function fingerprint(){
+    let fingerprint = sessionStorage.getItem('fingerprint');
+    return fingerprint;
+}
+
+
 $(document).ready(function() {
     getSession();
-      setLogoutTimer();
+    setLogoutTimer();
+    console.log(fingerprint());
 });
