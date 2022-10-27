@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "fingerprintjs2": "^2.1.4",
     "jquery-validation": "^1.19.5"
   }
 }
