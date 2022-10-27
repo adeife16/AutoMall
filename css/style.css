@@ -9669,6 +9669,16 @@ a.text-dark:hover, a.text-dark:focus {
     transform: rotate(359deg);
   }
 }
+
+/* ************* */
+  /* Profile page */
+.side-menu{
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  font-size: 20px;
+}
 /* ************ */
 .hide{
   display: none;
