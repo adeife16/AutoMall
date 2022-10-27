@@ -1,23 +1,40 @@
 // Get Profile Details
-function get_profile(session_var){
+function getProfile(session_var){
       var session_type = sessionStorage.getItem("session_type");
       $.ajax({
-        type: 'POST',
-        url: 'backend/profile.php',
+        type: 'GET',
+        url: 'backend/profile.php?getProfile='+session_var+'&type='+session_type,
         cache: false,
-        data: {
-          "get_profile" : session_var
-        },
         beforeSend: function(){
           $('#page-loader').toggleClass("hide");
         }
       })
       .done(function(response){
         data = JSON.parse(response)
-        show_profile(session_type, data);
-
+        // console.log(data);
+        showProfile(session_type, data[0]);
       })
 }
+//
+function getState(){
+return  $.ajax({
+    type: 'POST',
+    url: 'backend/location.php',
+    cache: false,
+    data:{
+      'get_states': 'get'
+    },
+    beforeSend: function(){
+    }
+  })
+  .done(function(response){
+    let data = JSON.parse(response);
+      showStates(data);
+
+
+  });
+}
+
 // Update Profile Details
 function update_profile_company(){
   var session_type = sessionStorage.getItem("session_type");

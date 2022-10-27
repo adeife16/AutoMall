@@ -8,11 +8,11 @@ $session_id = $_SESSION['id'];
 $session_type = $_SESSION['session_type'];
 
 // Get Profile Details
-if(isset($_POST['get_profile']) && $_POST['get_profile'] == $session_id)
+if(isset($_GET['getProfile']) && $_GET['getProfile'] == $session_id)
 {
-  if( $session_type == "company")
+  if( $session_type == "merchant")
   {
-    $stmt = "SELECT c.*, l.lga_name, s.state_name FROM company c, local_governments l, states s WHERE c.city = l.id AND c.state = s.id AND company_id = ? AND status = 'active'";
+    $stmt = "SELECT m.*, s.state_name FROM am_merchant m, am_state s WHERE m.state = s.id AND m.merchant_id = ? AND m.status = 'active'";
     $get_stmt = mysqli_prepare($con, $stmt);
     mysqli_stmt_bind_param($get_stmt,"s", $session_id);
     mysqli_execute($get_stmt);

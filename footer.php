@@ -79,6 +79,7 @@
 <script src="js/bootstrap.bundle.min.js"></script>
 <script src="lib/easing/easing.min.js"></script>
 <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+<script src="node_modules/fingerprintjs2/dist/fingerprint2.min.js" charset="utf-8"></script>
 
 <!-- Contact Javascript File -->
 <!-- <script src="mail/jqBootstrapValidation.min.js"></script>
@@ -109,9 +110,15 @@
     <script src="js/validate.js" charset="utf-8"></script>
 
 <?php endif; ?>
+<!-- login page -->
 <?php if ($title == "Login"): ?>
     <script src="ajax/login.js" charset="utf-8"></script>
     <script src="js/login.js" charset="utf-8"></script>
+<?php endif; ?>
+<!-- profile page -->
+<?php if ($title == "Profile"): ?>
+    <script src="ajax/profile.js" charset="utf-8"></script>
+    <script src="js/profile.js" charset="utf-8"></script>
 <?php endif; ?>
 </body>
 
