@@ -31,11 +31,11 @@ require '../vendor/autoload.php';
       $picture = picture_upload('picture', $buyer_id);
       if($picture == "success")
       {
-        $tmp = explode('/',$_FILES['picture']['type']);
+        $tmp = explode('/',$_FILES['picture']['name']);
         $ext = strtolower(end($tmp));
         if($ext == "jpeg")
         {
-          $ext = "jpg";
+          $ext = "jpeg";
         }
         $picture = strval($buyer_id) . '.' . $ext;
         // send mail

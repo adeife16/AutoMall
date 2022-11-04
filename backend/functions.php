@@ -61,65 +61,67 @@ function certificate_upload($filename, $company_id)
 function picture_upload($filename, $buyer_id)
 {
   $fold = '../img/users/' . $buyer_id;
-  if(mkdir($fold, 0755))
+  if (!file_exists($fold))
   {
-    $allowed_ext = ["jpg","jpeg","png"]; // These will be the only file extensions allowed
-    $uploadDirectory = $fold.'/';
-    $fileName = $_FILES[$filename]['name'];
-    $fileSize =$_FILES[$filename]['size'];
-    $fileTmpName =$_FILES[$filename]['tmp_name'];
-    $file_type=$_FILES[$filename]['type'];
-    $error = $_FILES[$filename]['error'];
-    $tmp = explode('.',$fileName);
-    $fileExtension=strtolower(end($tmp));
-    $newName = $buyer_id . "." . $fileExtension;
-    $uploadPath = $uploadDirectory . $newName;
+    mkdir($fold, 0755);
+  }
+  $allowed_ext = ["jpg","jpeg","png"]; // These will be the only file extensions allowed
+  $uploadDirectory = $fold.'/';
+  $fileName = $_FILES[$filename]['name'];
+  $fileSize =$_FILES[$filename]['size'];
+  $fileTmpName =$_FILES[$filename]['tmp_name'];
+  $file_type=$_FILES[$filename]['type'];
+  $error = $_FILES[$filename]['error'];
+  $tmp = explode('.',$fileName);
+  $fileExtension=strtolower(end($tmp));
+  $newName = $buyer_id . "." . $fileExtension;
+  $uploadPath = $uploadDirectory . $newName;
 
-    if ($fileSize > 1000000)
-    {
+  if ($fileSize > 1000000)
+  {
 
-      return "large";
+    return "large";
 
-    }
+  }
 
-    elseif (!in_array($fileExtension, $allowed_ext))
-    {
-      return "invalid";
-    }
-    else
-    {
-      if ($error == 0)
-      {
-
-        if (move_uploaded_file($fileTmpName , $uploadPath))
-        {
-          return "success";
-        }
-        else
-        {
-          return $error ;
-        }
-      }
-      else
-      {
-        return $error;
-      }
-
-    }
-
+  elseif (!in_array($fileExtension, $allowed_ext))
+  {
+    return "invalid";
   }
   else
   {
-    return "fatal";
+    if ($error == 0)
+    {
+
+      if (move_uploaded_file($fileTmpName , $uploadPath))
+      {
+        return "success";
+      }
+      else
+      {
+        return $error ;
+      }
+    }
+    else
+    {
+      return $error;
+    }
+
   }
+  // else
+  // {
+  //   return "fatal";
+  // }
 
 }
 // merchant logo upload
 function logo_upload($filename, $merchant_id)
 {
   $fold = '../img/users/' . $merchant_id;
-  if(mkdir($fold, 0755))
+  if (!file_exists($fold))
   {
+    mkdir($fold, 0755);
+  }
     $allowed_ext = ["jpg","jpeg","png"]; // These will be the only file extensions allowed
     $uploadDirectory = $fold.'/';
     $fileName = $_FILES[$filename]['name'];
@@ -163,12 +165,10 @@ function logo_upload($filename, $merchant_id)
       }
 
     }
-
-  }
-  else
-  {
-    return "fatal";
-  }
+  // else
+  // {
+  //   return "fatal";
+  // }
 
 }
 function profile_upload($filename, $rider_id)

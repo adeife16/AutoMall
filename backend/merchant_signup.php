@@ -32,11 +32,11 @@ require '../vendor/autoload.php';
       $picture = logo_upload('logo', $company_id);
       if($picture == "success")
       {
-        $tmp = explode('/',$_FILES['logo']['type']);
+        $tmp = explode('/',$_FILES['logo']['name']);
         $ext = strtolower(end($tmp));
         if($ext == "jpeg")
         {
-          $ext = "jpg";
+          $ext = "jpeg";
         }
         $picture = strval($company_id) . '.' . $ext;
         // send mail
