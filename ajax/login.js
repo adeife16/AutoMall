@@ -17,7 +17,7 @@ function login(){
       window.location.replace('index.php');
     }
     else{
-      $(".message").removeClass('hide');
+      alert_failure("Invalid Login details");
     }
   })
   .fail(function() {
