@@ -1,4 +1,6 @@
-
+<div class="alert-box success"></div>
+<div class="alert-box failure"></div>
+<div class="alert-box warning"></div>
 <!-- Footer Start -->
 <div class="container-fluid bg-secondary text-dark mt-5 pt-5">
     <div class="row px-xl-5 pt-5">
@@ -87,6 +89,7 @@
 
 <!-- Template Javascript -->
 <script src="js/main.js"></script>
+<script src="js/notification.js"></script>
 
 <!-- sign up page -->
 <?php if ($title == "Sign Up"): ?>
@@ -117,8 +120,12 @@
 <?php endif; ?>
 <!-- profile page -->
 <?php if ($title == "Profile"): ?>
+    <script src="node_modules/jquery-validation/dist/jquery.validate.min.js" charset="utf-8"></script>
+    <script src="node_modules/jquery-validation/dist/additional-methods.min.js" charset="utf-8"></script>
     <script src="ajax/profile.js" charset="utf-8"></script>
+    <script src="js/env.js" charset="utf-8"></script>
     <script src="js/profile.js" charset="utf-8"></script>
+    <script src="js/validate.js" charset="utf-8"></script>
 <?php endif; ?>
 </body>
 
