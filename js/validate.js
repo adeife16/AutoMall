@@ -5,6 +5,7 @@
     errorClass: "invalid",
     submitHandler: function(form) {
       let formdata = new FormData(document.getElementById('signup-form'));
+      let loading = '<img src="img/reload.svg">';
       $.ajax({
         url: 'backend/signup.php',
         type: 'POST',
@@ -14,10 +15,12 @@
         data: formdata,
         beforeSend: function(){
           $("#signup").attr("disabled", "disabled");
+          $("#signup").html(loading);
         }
       })
       .done(function(res){
         $("#signup").removeAttr("disabled");
+        $("#signup").html("SIGNUP");
         let data = JSON.parse(res);
         if(data === "success"){
           // console.log(data);
@@ -155,10 +158,13 @@
         data: formdata,
         beforeSend: function(){
           $("#signup").attr("disabled", "disabled");
+          $("#signup").html(loading);
+
         }
       })
       .done(function(res){
         $("#signup").removeAttr("disabled");
+        $("#signup").html("SIGNUP")
         let data = JSON.parse(res);
         if(data === "success"){
           $(".contain").html(`
