@@ -3,18 +3,11 @@
     error_reporting(1);
     // error_reporting(0);
 
-    // $cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
-    // $hostname = $cleardb_url["host"];
-    // $user = $cleardb_url["user"];
-    // $pass = $cleardb_url["pass"];
-    // $dbname = substr($cleardb_url["path"],1);
-    // $active_group = 'default';
-    // $query_builder = TRUE;
     //
-    // $hostname = 'sql202.hyperphp.com';
-    // $user = 'hp_28507677';
-    // $pass = 'J@LD4Tdu.giZPZd';
-    // $dbname = 'hp_28507677_tft';
+    // $hostname = 'sql107.epizy.com';
+    // $user = 'epiz_32934750';
+    // $pass = 'svUJfcewEiY4C';
+    // $dbname = 'epiz_32934750_automall';
 
     $hostname = 'localhost';
     $user = 'root';
@@ -37,7 +30,7 @@
     $email_link = 'apextech2010@outlook.com';
 
     // $web_link = 'https://jaadlogistics.herokuapp.com/';
-    $web_link = 'http://localhost/logistics/';
+      $web_link = 'http://www.automall.rf.gd/';
       // $web_link = 'http://adeinfo.hyperphp.com/';
 
     session_start();

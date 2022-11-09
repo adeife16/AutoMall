@@ -3,11 +3,11 @@
     error_reporting(-1);
     // error_reporting(0);
 
-
-    // $hostname = 'sql307.epizy.com';
-    // $user = 'epiz_32682260';
-    // $pass = 'q5ziiZ90nSG';
-    // $dbname = 'epiz_32682260_automall';
+    //
+    // $hostname = 'sql107.epizy.com';
+    // $user = 'epiz_32934750';
+    // $pass = 'svUJfcewEiY4C';
+    // $dbname = 'epiz_32934750_automall';
 
     $hostname = 'localhost';
     $user = 'root';
@@ -30,6 +30,7 @@
     $email_link = 'apextech2010@outlook.com';
 
     // $web_link = 'http://localhost/automall/';
-      $web_link = 'http://www.automall.epizy.com/';
+
+      $web_link = 'http://www.automall.rf.gd/';
 
     session_start();

@@ -95,7 +95,7 @@ function send_mail($email, $fname, $lname, $token){
           font-size: 1.3em;
         }
         a{
-          background: #3a9663;
+          background: #af1e23;
           text-decoration: none;
           padding: 8px 15px;
           border_radius: 5px;
