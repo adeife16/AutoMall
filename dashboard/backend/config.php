@@ -4,7 +4,6 @@
     // error_reporting(0);
 
 
-
     // $hostname = 'sql107.epizy.com';
     // $user = 'epiz_32934750';
     // $pass = 'svUJfcewEiY4C';
@@ -15,7 +14,7 @@
     $pass = '';
     $dbname = 'aseyoriNiTemi';
 
-    // $success = array();
+    // $success = array();  
     // $error = array();
 
     $con = mysqli_connect($hostname,$user,$pass,$dbname);

@@ -11013,22 +11013,22 @@ body.sidebar-toggled footer.sticky-footer {
 }
 
 .success {
-  color: #3c763d;
-  background-color: #dff0d870;
+  color: #fff;
+  background-color: #38c100;
   border-color: #d6e9c6;
   display: none;
 }
 
 .failure {
-  color: #a94442;
-  background-color: #f2dede70;
+  color: #fff;
+  background-color: #bd0000;
   border-color: #ebccd1;
   display: none;
 }
 
 .warning {
-  color: #ffc107;
-  background-color: #ffc10720;
+  color: #ffffff;
+  background-color: #ffc107;
   border-color: #fbe192;
   display: none;
 }
