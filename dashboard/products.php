@@ -8,7 +8,7 @@
 </div>
 <div class="row">
   <div class="col-lg-12 mb-30 mt-30">
-    <button type="button" data-toggle="modal" data-target="#newCatModal" class="btn white color-blue border-blue" id="add" name="button">New Category</button>
+    <a href="create_product.php" class="btn white color-blue border-blue">Add Product</a>
   </div>
   <div class="col-lg-12 col-md-12">
     <div class="cat-div">
@@ -27,7 +27,7 @@
                 </tr>
               </thead>
               <tbody id="display-product">
-                
+
               </tbody>
             </table>
           </div>
