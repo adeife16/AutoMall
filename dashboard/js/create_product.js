@@ -1,8 +1,17 @@
-
-
 $(document).ready(function() {
   $("#form-card").hide();
+  getCat();
 });
+
+// show all cateegories
+function showCat(data){
+  $("#cat").html(`<option value="">Select Category</option>`);
+  for(index in data){
+    $("#cat").append(`
+    <option value="`+data[index].id+`">`+data[index].cat_name+`</option>
+    `)
+  }
+}
 
 // clicking next button
 function next(){
@@ -42,6 +51,7 @@ function vehicle(){
         },2000)
         getMakes();
       $("#product-form").html(`
+        <input type="hidden" value="1" name="category">
         <div class="form-group">
         <label for="makes">Make</label>
         <select class="makes form-control" id="makes" name="makes">
@@ -436,11 +446,11 @@ function post(post) {
           if(res.status == "success"){
             alert_success("Product Created Successfully!")
             setTimeout(function(){
-              // window.location.replace("products.php");
+              window.location.replace("products.php");
             },3000);
           }
           else{
-            alert_failure("Error occured while creating product")
+              alert_failure("Error occured while creating product")
           }
         })
         .fail(function() {

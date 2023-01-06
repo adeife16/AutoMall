@@ -53,24 +53,24 @@ if (!isset($_SESSION['id']) && $_SESSION['session_type'] != "merchant")
       <hr class="sidebar-divider my-0">
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a class="nav-link" href="dashboard.php">
+        <a class="nav-link" href="index.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
         </li>
 
         <!-- Riders -->
         <li class="nav-item">
-          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+          <a class="nav-link" href="products.php">
             <i class="fas fa-fw fa-tags"></i>
             <span>Products</span>
           </a>
-          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <!-- <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
               <a class="collapse-item" href="products.php">Search</a>
-              <a class="collapse-item" href="category.php">Categories</a>
+              <a class="collapse-item" href="products.php">Categories</a>
               <a class="collapse-item" href="sub_cat.php">Sub-catogories</a>
             </div>
-          </div>
+          </div> -->
         </li>
 
         <!-- Companies -->

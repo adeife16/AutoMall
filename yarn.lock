@@ -21,3 +21,8 @@
   "integrity" "sha512-opJeO4nCucVnsjiXOE+/PcCgYw9Gwpvs/a6B1LL/lQhwWwpbVEVYDZ1FokFr8PRc7ghYlrFPuyHuiiDNTQxmcw=="
   "resolved" "https://registry.npmjs.org/jquery/-/jquery-3.6.1.tgz"
   "version" "3.6.1"
+
+"semantic-ui-dropdown@^2.5.0":
+  "integrity" "sha512-uM6XB9nM+8d65eLyBr/wwefeXzn+wudz2i71lDxvzP9k0LQxJ/stQwMwtp06WHQkegYpgo+HP58Q6Sfsn4W7ZQ=="
+  "resolved" "https://registry.npmjs.org/semantic-ui-dropdown/-/semantic-ui-dropdown-2.5.0.tgz"
+  "version" "2.5.0"

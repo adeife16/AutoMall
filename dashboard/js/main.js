@@ -57,25 +57,37 @@ var loading = '<div class="loadingio-spinner-rolling-0nfej7pbipad"><div class="l
     });
 
 })(jQuery);
-  // get session details from backend
-  function getSession(){
-    $.ajax({
-      url: 'backend/session.php?getSession=get',
-      type: 'GET',
-      cache: false,
-    })
-    .done(function(response) {
-      // if response status is success, create session variables
-      data = JSON.parse(response);
-      if(data[0].status == "success"){
-        var session_details = data[1];
-        setSession(session_details);
-      }
-      else{
-        // window.location.replace ('logout.php');
-      }
-      });
+
+// current converter
+function nairaConvert(num){
+  num = parseInt(num);
+  const formatter = new Intl.NumberFormat('en-NG', {
+    style: 'currency',
+    currency: 'NGN',
+    maximumFractionDigits: 0
+    });
+  return formatter.format(num);
+}
+
+// get session details from backend
+function getSession(){
+  $.ajax({
+    url: 'backend/session.php?getSession=get',
+    type: 'GET',
+    cache: false,
+  })
+  .done(function(response) {
+    // if response status is success, create session variables
+    data = JSON.parse(response);
+    if(data[0].status == "success"){
+      var session_details = data[1];
+      setSession(session_details);
     }
+    else{
+      // window.location.replace ('logout.php');
+    }
+    });
+  }
 
     // Hide or display login and signup, profile and logout link depending on session availability
     function setSession(session_details){
@@ -165,5 +177,5 @@ window.location.replace('logout.php')
 
 $(document).ready(function() {
     getSession();
-    setLogoutTimer();
+    // setLogoutTimer();
 });

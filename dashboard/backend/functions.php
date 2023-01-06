@@ -559,3 +559,10 @@ function watermark($source, $type, $name)
   }
 
 }
+
+
+// remove duplicates
+function remove_duplicates(&$value, $key) {
+    $value = array_unique($value);
+    return $value;
+}

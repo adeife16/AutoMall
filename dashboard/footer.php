@@ -57,30 +57,33 @@
   <script src="js/dashboard.js" charset="utf-8"></script>
   <script src="ajax/dashboard.js" charset="utf-8"></script>
 <?php endif; ?>
-<?php if ($title == 'Profile'): ?>
-  <script src="js/profile.js" charset="utf-8"></script>
-  <script src="ajax/profile.js" charset="utf-8"></script>
+
+<!-- Products page scripts -->
+<?php if ($title == "Products"): ?>
+  <link rel="stylesheet" href="css/datatables.min.css">
+  <script src="js/jquery.dataTables.min.js" charset="utf-8"></script>
+  <script src="ajax/products.js"></script>
+  <script src="js/products.js" charset="utf-8"></script>
 <?php endif; ?>
-<!-- request page script -->
-<?php if ($title == "Product Category"): ?>
-  <script src="vendor/datatables/datatables.min.js"></script>
 
-  <script src="js/product_category.js" charset="utf-8"></script>
-  <script src="ajax/product_category.js" charset="utf-8"></script>
+<!-- Create product page scripts -->
+<?php if ($title == "Add Product"): ?>
+  <link rel="stylesheet" href="vendor/select2/dist/css/select2.min.css">
+  <link rel="stylesheet" href="css/jquery.imagesloader.css">
+  <script type="text/javascript" src="js/jquery.imagesloader-1.0.1.js"></script>
+  <script src="vendor/select2/dist/js/select2.full.min.js" charset="utf-8"></script>
+  <script src="ajax/create_product.js" charset="utf-8"></script>
+  <script src="js/create_product.js" charset="utf-8"></script>
 <?php endif; ?>
-<?php if ($title == "Sub Category"): ?>
 
-  <script src="vendor/datatables/datatables.min.js"></script>
-
-  <script src="js/sub_category.js" charset="utf-8"></script>
-  <script src="ajax/sub_category.js" charset="utf-8"></script>
-
-<?php endif; ?>
-<?php if ($title == "Admins"): ?>
-
-  <script src="js/admins.js" charset="utf-8"></script>
-  <script src="ajax/admins.js" charset="utf-8"></script>
-
+<!-- Edit product page scripts -->
+<?php if ($title == "Edit Product"): ?>
+  <link rel="stylesheet" href="vendor/select2/dist/css/select2.min.css">
+  <link rel="stylesheet" href="css/jquery.imagesloader.css">
+  <script type="text/javascript" src="js/jquery.imagesloader-1.0.1.js"></script>
+  <script src="vendor/select2/dist/js/select2.full.min.js" charset="utf-8"></script>
+  <script src="ajax/edit_product.js" charset="utf-8"></script>
+  <script src="js/edit_product.js" charset="utf-8"></script>
 <?php endif; ?>
 
 <!-- Page level plugins -->

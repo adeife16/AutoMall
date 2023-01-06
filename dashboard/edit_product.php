@@ -1,5 +1,5 @@
 <?php
-  $title  = 'Add Product';
+  $title  = 'Edit Product';
   require_once 'header.php';
 ?>
 <style media="screen">
@@ -94,42 +94,12 @@ p {
 <div class="row justify-content-center">
   <div class="col-lg-8">
     <div class="form-div">
-      <div class="control" id="control">
-        <div class="form-group">
-          <label for="cat">Category</label>
-          <select class="form-control" name="cat" id="cat" onchange="change()">
-
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="sub-cat">Category</label>
-          <select class="form-control" name="cat" id="sub-cat" disabled>
-            <option value=""></option>
-            <option value="car">Cars</option>
-            <option value="trucks">Trucks</option>
-            <option value="bike">Bikes</option>
-            <option value="bus">Buses</option>
-            <option value="van">Vans</option>
-            <option value="tri">Tricycles</option>
-            <option value="boat">Boats</option>
-          </select>
-        </div>
-        <div class="float-right">
-          <button type="button" class="btn btn color-white blue" id="next" onclick="next()" name="button">Next</button>
-        </div>
-      </div>
-
-      <div class="card shadow mb-4" id="form-card">
-        <div class="card-body">
-          <button type="button" class="red color-white btn float-right mb-5" id="cancel" onclick="cancel()">Cancel</button>
-          <form class="mt-5" action="" id="product-form" method="post" enctype="multipart/form-data">
-          </form>
+        <form class="mt-5" action="" id="product-form" method="post" enctype="multipart/form-data">
+        </form>
         </div>
       </div>
 
     </div>
-  </div>
-</div>
 <?php
   require_once 'footer.php';
 ?>

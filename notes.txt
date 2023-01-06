@@ -9,6 +9,7 @@
         General
 ==============================
 Google Analycis (analytics.js)
+Fix merchant signup
 ==============================
 
 
@@ -16,6 +17,9 @@ Google Analycis (analytics.js)
 ==============================
         Merchant Section
 ==============================
+Add color dropdown to product create form
+Add Location dropdown to product create form
+Add hidden product category input to product create form
 ==============================
 
 

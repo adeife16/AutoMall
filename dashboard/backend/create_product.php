@@ -3,8 +3,33 @@ require_once 'functions.php';
 $session_id = $_SESSION['id'];
 $data = array();
 
+
+// get all categories
+if(isset($_GET['get_category']))
+{
+  if($_GET['get_category'] == "all")
+  {
+    $stmt = "SELECT id, cat_name FROM am_category";
+    $cat = mysqli_prepare($con, $stmt);
+    if(mysqli_stmt_execute($cat))
+    {
+      $result = mysqli_stmt_get_result($cat);
+      while($row = mysqli_fetch_assoc($result))
+      {
+        array_push($data, $row);
+      }
+      $json = array("status" => "success", "data" => $data);
+    }
+    else
+    {
+      $json = array("status" => "error");
+    }
+
+    print json_encode($json);
+  }
+}
 // get all makes
-if(isset($_GET['get_make']) && $_GET['get_make'] != "")
+elseif(isset($_GET['get_make']) && $_GET['get_make'] != "")
 {
   $make = $_GET['get_make'];
 
@@ -157,6 +182,8 @@ elseif(isset($_GET['get_others']) && $_GET['get_others'] != "")
 elseif(isset($_POST['makes']) && $_POST['makes'] != "")
 {
   $product_id = $session_id. str_shuffle(substr(md5(time().mt_rand().time()), 0,20));
+  $cat = 1;
+  // $cat = $_POST['category'];
   $make = $_POST['makes'];
   $model = $_POST['models'];
   $year = $_POST['years'];
@@ -177,12 +204,12 @@ elseif(isset($_POST['makes']) && $_POST['makes'] != "")
   $location = $_POST['location'];
   $desc = $_POST['desc'];
 
-  $stmt = "INSERT INTO am_product(product_id, product_make, product_model, product_year, product_trim, product_condition, product_register, product_vin, product_type, product_seat, product_trans, product_drive, product_engine, product_hp, product_cylinder, product_fuel, product_mileage, product_price, product_location, product_desc, user_id, date_created, date_updated) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,NOW(), NOW())";
+  $stmt = "INSERT INTO am_product(product_id, product_category, product_make, product_model, product_year, product_trim, product_condition, product_register, product_vin, product_type, product_seat, product_trans, product_drive, product_engine, product_hp, product_cylinder, product_fuel, product_mileage, product_price, product_location, product_desc, user_id, date_created, date_updated) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,NOW(), NOW())";
 
   $save = mysqli_prepare($con, $stmt);
-  mysqli_stmt_bind_param($save, 'siiiissisisssiisiiiss', $product_id, $make, $model, $year, $trim, $condition, $register, $vin, $type, $seat, $trans, $drive, $engine, $hp, $cylinder, $fuel, $mile, $price, $location, $desc, $session_id);
+  mysqli_stmt_bind_param($save, 'siiiiissisisssiisiiiss', $product_id, $cat, $make, $model, $year, $trim, $condition, $register, $vin, $type, $seat, $trans, $drive, $engine, $hp, $cylinder, $fuel, $mile, $price, $location, $desc, $session_id);
 
-  if(mysqli_execute($save))
+  if(mysqli_stmt_execute($save))
   {
     $json = array("status" => "success", "data" => $product_id);
   }
@@ -190,7 +217,7 @@ elseif(isset($_POST['makes']) && $_POST['makes'] != "")
   {
     $json = array("status" => mysqli_error($con));
   }
-  mysqli_close();
+  mysqli_close($con);
   print json_encode($json);
 }
 
@@ -221,7 +248,7 @@ elseif ($_POST['savepictures'] && $_POST['savepictures'] != "")
       $stmt = "INSERT INTO am_product_pictures(product_id, user_id, picture, date_created, date_updated) VALUES(?,?,?,NOW(), NOW())";
       $save = mysqli_prepare($con, $stmt);
       mysqli_stmt_bind_param($save, 'sss', $product_id, $session_id, $name);
-      if(mysqli_execute($save))
+      if(mysqli_stmt_execute($save))
       {
         $json = array("status" => "success");
       }

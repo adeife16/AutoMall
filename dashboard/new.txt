@@ -1,0 +1,29 @@
+if(isset($_POST['hp']))
+{
+  $hps = $_POST['hp'];
+  $trim_id = $hps['trim'];
+  $hp = $hps['hp'];
+  for($i=0; $i<count($hp); $i++)
+  {
+    $current_hp = $hp[$i]['value'];
+    $current_hp_id = strval($hp[$i]['id']);
+    // $current_hp_id = $current_hp_id * 0.5;
+
+    $stmt = "INSERT INTO am_hp(trim_id, hp_id, hp, date_created, date_updated) VALUES(?,?,?,NOW(),NOW())";
+    $save = mysqli_prepare($con, $stmt);
+    mysqli_stmt_bind_param($save, 'iis', $trim_id, $current_hp_id, $current_hp);
+
+    // $save = mysqli_query("INSERT INTO am_hps(make_id, hp_id, hp_name, category, date_created, date_updated) VALUES('$make', '$current_hp_id', '$current_hp', 1, NOW(), NOW())");
+
+    if(mysqli_execute($save))
+    {
+      print $trim_id." ".$current_hp." is saved \n";
+    }
+    else
+    {
+      print $trim_id." ".$current_hp." is not saved \n";
+      print mysqli_error($con);
+      print "\n";
+    }
+  }
+}

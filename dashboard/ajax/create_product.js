@@ -1,3 +1,17 @@
+// get all categories
+function getCat(){
+  $.ajax({
+    type: 'GET',
+    url: 'backend/create_product.php?get_category=all'
+  })
+  .done(function(res){
+    let data = JSON.parse(res);
+    if(data.status == "success"){
+      showCat(data.data)
+    }
+  })
+}
+
 // get all makes
 function getMakes(){
   $.ajax({

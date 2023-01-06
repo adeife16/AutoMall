@@ -18,12 +18,14 @@
             <table class="table table-bordered text-center" id="dataTable" width="100%" cellspacing="0">
               <thead>
                 <tr>
-                  <th></th>
-                  <th>Product Id</th>
+                  <th>Status</th>
                   <th>Picture</th>
-                  <th>Name</th>
+                  <th>Make</th>
+                  <th>Model</th>
+                  <th>Year</th>
                   <th>Category</th>
-                  <th></th>
+                  <th>Price</th>
+                  <th>Action</th>
                 </tr>
               </thead>
               <tbody id="display-product">
