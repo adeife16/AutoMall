@@ -103,15 +103,8 @@ p {
         </div>
         <div class="form-group">
           <label for="sub-cat">Category</label>
-          <select class="form-control" name="cat" id="sub-cat" disabled>
-            <option value=""></option>
-            <option value="car">Cars</option>
-            <option value="trucks">Trucks</option>
-            <option value="bike">Bikes</option>
-            <option value="bus">Buses</option>
-            <option value="van">Vans</option>
-            <option value="tri">Tricycles</option>
-            <option value="boat">Boats</option>
+          <select class="form-control" name="sub-cat" id="sub-cat" disabled>
+
           </select>
         </div>
         <div class="float-right">

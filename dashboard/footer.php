@@ -73,6 +73,7 @@
   <script type="text/javascript" src="js/jquery.imagesloader-1.0.1.js"></script>
   <script src="vendor/select2/dist/js/select2.full.min.js" charset="utf-8"></script>
   <script src="ajax/create_product.js" charset="utf-8"></script>
+  <script src="js/forms.js"></script>
   <script src="js/create_product.js" charset="utf-8"></script>
 <?php endif; ?>
 

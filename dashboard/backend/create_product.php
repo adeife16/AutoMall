@@ -27,6 +27,29 @@ if(isset($_GET['get_category']))
 
     print json_encode($json);
   }
+}// get sub categories
+if(isset($_GET['get_sub_category']))
+{
+  $cat_id = $_GET['get_sub_category'];
+
+    $stmt = "SELECT id, sub_cat_name FROM am_sub_category WHERE cat_id = ?";
+    $sub_cat = mysqli_prepare($con, $stmt);
+    mysqli_stmt_bind_param($sub_cat, 'i', $cat_id);
+    if(mysqli_stmt_execute($sub_cat))
+    {
+      $result = mysqli_stmt_get_result($sub_cat);
+      while($row = mysqli_fetch_assoc($result))
+      {
+        array_push($data, $row);
+      }
+      $json = array("status" => "success", "data" => $data);
+    }
+    else
+    {
+      $json = array("status" => "error");
+    }
+
+    print json_encode($json);
 }
 // get all makes
 elseif(isset($_GET['get_make']) && $_GET['get_make'] != "")
@@ -182,8 +205,9 @@ elseif(isset($_GET['get_others']) && $_GET['get_others'] != "")
 elseif(isset($_POST['makes']) && $_POST['makes'] != "")
 {
   $product_id = $session_id. str_shuffle(substr(md5(time().mt_rand().time()), 0,20));
-  $cat = 1;
-  // $cat = $_POST['category'];
+  // $cat = 1;
+  $cat = $_POST['category'];
+  $sub_cat = $_POST['sub_category'];
   $make = $_POST['makes'];
   $model = $_POST['models'];
   $year = $_POST['years'];
@@ -204,10 +228,10 @@ elseif(isset($_POST['makes']) && $_POST['makes'] != "")
   $location = $_POST['location'];
   $desc = $_POST['desc'];
 
-  $stmt = "INSERT INTO am_product(product_id, product_category, product_make, product_model, product_year, product_trim, product_condition, product_register, product_vin, product_type, product_seat, product_trans, product_drive, product_engine, product_hp, product_cylinder, product_fuel, product_mileage, product_price, product_location, product_desc, user_id, date_created, date_updated) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,NOW(), NOW())";
+  $stmt = "INSERT INTO am_product(product_id, product_category, product_sub_category, product_make, product_model, product_year, product_trim, product_condition, product_register, product_vin, product_type, product_seat, product_trans, product_drive, product_engine, product_hp, product_cylinder, product_fuel, product_mileage, product_price, product_location, product_desc, user_id, date_created, date_updated) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,NOW(), NOW())";
 
   $save = mysqli_prepare($con, $stmt);
-  mysqli_stmt_bind_param($save, 'siiiiissisisssiisiiiss', $product_id, $cat, $make, $model, $year, $trim, $condition, $register, $vin, $type, $seat, $trans, $drive, $engine, $hp, $cylinder, $fuel, $mile, $price, $location, $desc, $session_id);
+  mysqli_stmt_bind_param($save, 'siiiiiissisisssiisiiiss', $product_id, $cat, $sub_cat, $make, $model, $year, $trim, $condition, $register, $vin, $type, $seat, $trans, $drive, $engine, $hp, $cylinder, $fuel, $mile, $price, $location, $desc, $session_id);
 
   if(mysqli_stmt_execute($save))
   {
@@ -269,6 +293,27 @@ elseif ($_POST['savepictures'] && $_POST['savepictures'] != "")
       break;
     }
     $i++;
+  }
+  print json_encode($json);
+}
+
+// get all colors
+elseif(isset($_GET['colors']) && $_GET['colors'] == "all")
+{
+  $stmt = "SELECT * FROM am_color";
+  $color = mysqli_prepare($con, $stmt);
+  if(mysqli_stmt_execute($color))
+  {
+    $result = mysqli_stmt_get_result($color);
+    while($row = mysqli_fetch_assoc($result))
+    {
+      array_push($data, $row);
+    }
+    $json = array("status" => "success", "data" => $data);
+  }
+  else
+  {
+    $json = array("status" => "error");
   }
   print json_encode($json);
 }

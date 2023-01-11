@@ -11,6 +11,18 @@ function getCat(){
     }
   })
 }
+function getSubCat(id){
+  $.ajax({
+    type: 'GET',
+    url: 'backend/create_product.php?get_sub_category='+id
+  })
+  .done(function(res){
+    let data = JSON.parse(res);
+    if(data.status == "success"){
+      showSubCat(data.data)
+    }
+  })
+}
 
 // get all makes
 function getMakes(){
@@ -125,19 +137,31 @@ function getOthers(id){
 // get colors
 function getColors(){
   $.ajax({
-    url: '/path/to/file',
-    type: 'default GET (Other values: POST)',
-    dataType: 'default: Intelligent Guess (Other values: xml, json, script, or html)',
-    data: {param1: 'value1'}
+    url: 'backend/create_product.php?colors=all',
+    type: 'GET',
   })
-  .done(function() {
-    console.log("success");
+  .done(function(res){
+    let data = JSON.parse(res);
+    if(data.status == "success"){
+      showColors(data.data);
+    }
   })
   .fail(function() {
     console.log("error");
   })
-  .always(function() {
-    console.log("complete");
-  });
+}
+// get colors
+function getStates(){
+  $.ajax({
+    url: 'backend/location.php?states=all',
+    type: 'GET',
+  })
+  .done(function(res){
+    let data = JSON.parse(res);
+    showStates(data)
+  })
+  .fail(function() {
+    console.log("error");
+  })
 
 }

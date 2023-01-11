@@ -1,10 +1,10 @@
 $(document).ready(function() {
       getAllProducts();
-      $("#dataTable").DataTable( {
-            select: {
-                style: 'multi'
-            }
-});
+//       $("#dataTable").DataTable( {
+//             select: {
+//                 style: 'multi'
+//             }
+// });
 })
 // show all products
 function showProducts(data){

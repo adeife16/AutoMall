@@ -1,8 +1,7 @@
 let url = window.location.href;
-url = url.split('?');
-let data = url[1];
+let product = url.split('?')[1].split('=')[2];
+
 
 $(document).ready(function() {
-  let url =
-  getProduct()
+  getProduct(product);
 });

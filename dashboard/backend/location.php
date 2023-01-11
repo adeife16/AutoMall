@@ -6,13 +6,13 @@
 
     // Get states
 
-    if(isset($_POST['get_states']))
+    if(isset($_GET['states']))
     {
-        $get_states = mysqli_query($con, "SELECT * FROM states");
+        $get_states = mysqli_query($con, "SELECT * FROM am_state");
 
         if($get_states)
         {
-            while($row = mysqli_fetch_array($get_states))
+            while($row = mysqli_fetch_assoc($get_states))
             {
                 array_push($json, $row);
             }
