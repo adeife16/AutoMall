@@ -10,6 +10,8 @@ const endpoints = require('express-list-routes')
 
 // routes
 const authRoute = require('../src/routes/Auth/Auth.routes');
+const productRoute = require('../src/routes/Product/Product.routes');
+
 
 const app = express();
 app.use(cors({
@@ -25,6 +27,7 @@ const prefix = '/api/v1'
 
 // register route
 app.use(prefix, authRoute);
+app.use(prefix, productRoute);
 
 console.log(endpoints(app))
 
