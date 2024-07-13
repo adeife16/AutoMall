@@ -1,15 +1,27 @@
 <template>
   <div>
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav>
+    <Navbar />
+    <PreLoader />
     <router-view/>
     <footer>
-      <h5>Footer here</h5>
+      <h5>Mobile Nav here</h5>
     </footer>
   </div>
 </template>
+
+
+<script>
+import Navbar from './components/Navbar.vue';
+import PreLoader from './components/PreLoader.vue';
+export default {
+  name: 'App',
+  components: {
+    Navbar,
+    PreLoader
+  }
+}
+
+</script>
 
 <style>
 @import url('./styles/main.css');
