@@ -7,14 +7,13 @@ const siteEmail = process.env.SITE_EMAIL;
 const sitePassword = process.env.EMAIL_PASSWORD;
 
 const transporter = nodemailer.createTransport({
-    // host: 'smtp.titan.email',
-    host: 'smtp.freesmtpservers.com',
-    port: 25, // 465 for SSL or 587 for insecure
-    secure: false, // true for 465, false for other ports
-    // auth: {
-    //     user: siteEmail,
-    //     pass: sitePassword
-    // }
+    host: 'smtp.titan.email',
+    port: 465, // 465 for SSL or 587 for insecure
+    secure: true, // true for 465, false for other ports
+    auth: {
+        user: siteEmail,
+        pass: sitePassword
+    }
 });
 
 async function sendMail(to, subject, html) {
