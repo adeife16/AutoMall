@@ -1,0 +1,16 @@
+{
+  "name": "automall",
+  "version": "1.0.0",
+  "description": "#ffffff #000000 #c70f0f #f2a900",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently \"cd client && npm run serve\" \"cd server && npm run dev\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^8.2.2",
+    "vuex": "^4.1.0"
+  }
+}
