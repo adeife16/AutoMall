@@ -24,10 +24,7 @@ class AuthModel {
     async activateUser(userId){
         const activate = await this.db.updateWhere('am_user', ['status'], ['Active'], 'user_id', userId);
 
-        if(activate == 1){
-            return true;
-        }
-        return false;
+        return activate.changedRows == 1 ? true : false;
     }
 
     async comparePasswords(plainPassword, hashedPassword) {
