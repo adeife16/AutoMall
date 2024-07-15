@@ -4,8 +4,11 @@ const multer = require('multer');
 const upload = multer();
 
 const AuthController = require('../../controllers/Auth/Auth.controller');
+const AuthMiddleware = require('../../Middlewares/Auth.middleware');
 
 const authController = new AuthController();
+const authMiddleware = new AuthMiddleware();
+
 
 // Bind the methods to the authController instance
 const loginHandler = authController.login.bind(authController);
