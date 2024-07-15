@@ -15,7 +15,7 @@ const productRoute = require('../src/routes/Product/Product.routes');
 
 const app = express();
 app.use(cors({
-    origin: 'http://localhost:3000'
+    origin: 'http://localhost:8080'
 }));
 app.use(express.json());
 
@@ -29,7 +29,7 @@ const prefix = '/api/v1'
 app.use(prefix, authRoute);
 app.use(prefix, productRoute);
 
-console.log(endpoints(app))
+// console.log(endpoints(app));
 
 
 module.exports = app;
