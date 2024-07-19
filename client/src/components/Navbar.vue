@@ -195,23 +195,28 @@
         <li v-if="!isLoggedIn">
           <router-link
             to="/login"
-            class="inline-block py-3 px-4 rounded-md color-yellow hover:underline"
+            class="inline-block py-2 px-4 rounded-md color-yellow hover:underline"
             >Login</router-link
           >
           |
           <router-link
             to="/register"
-            class="inline-block py-3 px-4 rounded-md color-yellow hover:underline"
+            class="inline-block py-2 px-4 rounded-md color-yellow hover:underline"
             >Register</router-link
           >
         </li>
         <li v-else>
           <a
             href="#"
-            class="inline-block py-3 px-4 rounded-md color-yellow hover:underline"
+            class="inline-block py-2 px-4 rounded-md color-yellow hover:underline"
             @click.prevent="handleLogout"
             >Logout</a
           >
+        </li>
+        <li>
+          <Button btnClass="btn-yellow" @btnClick="sellProduct">
+            <PlusIcon class="size-6" /> <span class="align-text-top"> Sell </span> 
+          </Button>
         </li>
       </ul>
     </div>
@@ -219,60 +224,76 @@
 </template>
 
 <script>
-  import { ref } from "vue";
-  import { XMarkIcon, Bars3Icon } from "@heroicons/vue/16/solid";
-  import { useAuthStore } from "@/stores/authStore";
-  import { storeToRefs } from 'pinia';
-  import { useRouter } from "vue-router";
+import { ref } from "vue";
+import { XMarkIcon, Bars3Icon, PlusIcon } from "@heroicons/vue/16/solid";
+import { useAuthStore } from "@/stores/authStore";
+import { storeToRefs } from "pinia";
+import { useRouter } from "vue-router";
+import axiosInstance from "@/services/HttpClient";
+import Cookies from "js-cookie";
+import Button from "./Button.vue";
 
-  export default {
-    components: {
-      XMarkIcon,
-      Bars3Icon,
-    },
-    setup() {
-      const router = useRouter();
-      const isOpen = ref(false);
-      const dropdownOpen = ref(false);
-      const dropdownOpenMobile = ref(false);
-      const authStore = useAuthStore();
+export default {
+  components: {
+    XMarkIcon,
+    Bars3Icon,
+    PlusIcon,
+    Button
+  },
+  setup() {
+    const router = useRouter();
+    const isOpen = ref(false);
+    const dropdownOpen = ref(false);
+    const dropdownOpenMobile = ref(false);
+    const authStore = useAuthStore();
 
-      const { isLoggedIn } = storeToRefs(authStore);
+    const { isLoggedIn } = storeToRefs(authStore);
 
-      const handleLogout = () => {
+    const handleLogout = async () => {
+      authStore.logout();
+
+      const logout = await axiosInstance.post(`/auth/logout`);
+
+      // Redirect to login page
+      if (logout.status === 200) {
+        localStorage.clear();
+        Cookies.remove("accessToken");
+        Cookies.remove("refreshToken");
         authStore.logout();
+
         router.push({ name: "home" });
-      };
-      const toggleMenu = () => {
-        isOpen.value = !isOpen.value;
-        dropdownOpenMobile.value = false;
-      };
+      }
+    };
+    const toggleMenu = () => {
+      isOpen.value = !isOpen.value;
+      dropdownOpenMobile.value = false;
+    };
 
-      const toggleDropdown = () => {
-        dropdownOpen.value = !dropdownOpen.value;
-      };
+    const toggleDropdown = () => {
+      dropdownOpen.value = !dropdownOpen.value;
+    };
 
-      const toggleDropdownMobile = () => {
-        dropdownOpenMobile.value = !dropdownOpenMobile.value;
-      };
+    const toggleDropdownMobile = () => {
+      dropdownOpenMobile.value = !dropdownOpenMobile.value;
+    };
 
-      const hideDropdown = () => {
-        dropdownOpen.value = false;
-      };
+    const hideDropdown = () => {
+      dropdownOpen.value = false;
+    };
 
-      return {
-        isOpen,
-        toggleMenu,
-        toggleDropdown,
-        toggleDropdownMobile,
-        hideDropdown,
-        dropdownOpen,
-        dropdownOpenMobile,
-        isLoggedIn, // Reactive reference to isLoggedIn
-        handleLogout,
-      };
-    },
-  };
+    return {
+      isOpen,
+      toggleMenu,
+      toggleDropdown,
+      toggleDropdownMobile,
+      hideDropdown,
+      dropdownOpen,
+      dropdownOpenMobile,
+      isLoggedIn, // Reactive reference to isLoggedIn
+      handleLogout,
+    };
+  },
+};
 </script>
 
   
@@ -312,4 +333,4 @@ a {
   display: inline-block !important;
 }
 </style>
-  
+  @/utils/HttpClient@/utils/HttpClient
