@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 // const session = require('express-session');
 const bodyParser = require('body-parser');
 const endpoints = require('express-list-routes')
+const path = require("path");
 
 
 
@@ -14,6 +15,7 @@ const productRoute = require('../src/routes/Product/Product.routes');
 
 
 const app = express();
+app.use("/static", express.static('public'));
 app.use(cors({
     origin: 'http://localhost:8080'
 }));
