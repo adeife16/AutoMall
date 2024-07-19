@@ -86,6 +86,8 @@
   body {
     font-family: 'Arial', sans-serif;
     line-height: 1.6;
+    box-sizing: border-box;
+
   }
   
   /* Container styles */
@@ -242,4 +244,11 @@
   /* svg */
   svg{
     display: inline-block !important;
+  }
+
+  /* ***************** */
+
+  /* card */
+  .card{
+    border-radius: 15px !important
   }
