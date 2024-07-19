@@ -57,7 +57,7 @@ class AuthController {
 			const accessToken = await this.generateAccessToken(userDetails);
 			const refreshToken = await this.generateRefreshToken(userDetails);
 
-      // geerate new refresh token
+			// geerate new refresh token
 			await this.authModel.removeToken(user.user_id);
 			await this.authModel.createToken(user.user_id, refreshToken);
 
@@ -109,11 +109,9 @@ class AuthController {
 							checkUser.user_id
 						)
 					) {
-						return res
-							.status(200)
-							.json({
-								message: "Activation mail resent successfully",
-							});
+						return res.status(200).json({
+							message: "Activation mail resent successfully",
+						});
 					}
 					return res
 						.status(500)
@@ -296,6 +294,39 @@ class AuthController {
 		} catch (error) {
 			console.error("Error sending activation mail:", error);
 			return false;
+		}
+	}
+
+	async logout(req, res) {
+		const authHeader = req.headers["authorization"];
+		if (!authHeader) {
+			return res
+				.status(200)
+				.json({ message: "Authorization header not found" });
+		}
+
+		const token = authHeader.split(" ")[1];
+		if (!token) {
+			return res
+				.status(200)
+				.json({ message: "Access token not provided" });
+		}
+		try {
+			const decoded = jwt.verify(token, process.env.JWT_SECRET);
+			const userId = decoded.user.userId;
+			await this.authModel.removeToken(userId);
+			return res
+				.status(200)
+				.cookie("accessToken", "", { maxAge: 0 })
+				.cookie("refreshToken", "", { maxAge: 0 })
+				.json({ message: "Logged out successfully" });
+		} catch (error) {
+			if (error.name === "TokenExpiredError") {
+				return res.status(200).json({ message: "Token expired" });
+			}
+
+			// console.error("Error logging out:", error);
+			return res.status(500).json({ message: "Internal server error" });
 		}
 	}
 }
