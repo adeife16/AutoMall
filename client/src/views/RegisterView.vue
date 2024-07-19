@@ -27,15 +27,21 @@ import  {useRouter} from 'vue-router';
 import Form from '@/components/Form.vue';
 import Input from '@/components/Input.vue';
 import Button from '@/components/Button.vue';
-import formValidator from '../composables/Validator';
+import formValidator from '../utils/Validator';
 import { toast } from 'vue3-toastify';
 import axios from 'axios';
+import { useAuthStore } from '@/stores/authStore';
 
 export default {
   components: { Form, Input, Button, toast },
   setup() {
     const router = useRouter();
     const apiUrl = process.env.VUE_APP_SERVER_API_URL;
+
+    const authStore = useAuthStore();
+    if(authStore.isLoggedIn) {
+      router.push({ name: 'home' });
+    }
 
     const disabled = ref(false);
     

@@ -48,12 +48,11 @@ import { useRouter } from "vue-router";
 import Form from "@/components/Form.vue";
 import Input from "@/components/Input.vue";
 import Button from "@/components/Button.vue";
-import formValidator from "../composables/Validator";
+import formValidator from "../utils/Validator";
 import { toast } from "vue3-toastify";
 import axios from "axios";
 import { useAuthStore } from "@/stores/authStore";
 import Cookies from "js-cookie";
-import randomString from "../composables/RandomString";
 
 export default {
   components: { Form, Input, Button },
@@ -108,26 +107,32 @@ export default {
         try {
           const login = await axios.post(`${apiUrl}/auth/login`, form.value); // Corrected API URL here
 
+          const userRole = login.data.user.role;
+
+          localStorage.clear();
+          localStorage.setItem("role", userRole);
           authStore.login(login.data.user);
 
-          const cookieLife = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000); // 7 days
+          // Set access token in cookies
+          Cookies.remove("accessToken");
+          const config = {
+            secure: true,
+            expires: 1,
+          };
+          Cookies.set("accessToken", login.data.accessToken, config);
 
-          const sessionKey = randomString(8);
-
-          // Set access token and refresh token in local storage
-          localStorage.clear();
-          localStorage.setItem(sessionKey, login.data.accessToken);
-
+          // Set refresh token in cookies
           Cookies.remove("refreshToken");
-          const options = { httpOnly: true, secure: true, expires: cookieLife };
+          const options = {
+            secure: true,
+            expires: 7,
+          };
           Cookies.set("refreshToken", login.data.refreshToken, options);
 
           authStore.setToken({
             accessToken: login.data.accessToken,
             refreshToken: login.data.refreshToken,
           });
-
-          authStore.setSessionKey(sessionKey);
 
           toast.success(login.data.message);
           setTimeout(() => {
