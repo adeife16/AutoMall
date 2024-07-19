@@ -1,5 +1,15 @@
 <template>
   <div class="home">
+    <!-- categories -->
+    <Category :categories="categories" :catClass="'mb-5 mt-5'" />
+
+    <div class="card">
+      <h1>Featured Listings</h1>
+      <div class="row-auto">
+        
+      </div>
+    </div>
+
     <h1>This is an home page</h1>
     <Button btnClass="btn-yellow border-white" @btnClick="handleButtonClick">
       <span> <ArrowRightEndOnRectangleIcon class="size-6" />Button </span>
@@ -21,12 +31,6 @@
       @upload="handleUpload"
       @remove="handleRemove"
     />
-    <div>
-      <p>{{ authStore.isLoggedIn }}</p>
-      <p>{{ authStore.user }}</p>
-      <p>{{ authStore.token }}</p>
-      <p>{{ authStore.sessionKey }}</p>
-    </div>
   </div>
 </template>
 
@@ -35,9 +39,12 @@ import Button from "@/components/Button.vue";
 import Input from "@/components/Input.vue";
 import { ArrowRightEndOnRectangleIcon } from "@heroicons/vue/16/solid";
 import MultiImageUploader from "@/components/MultiImageUploader.vue";
-import { ref } from "vue";
 import { toast } from "vue3-toastify";
 import { useAuthStore } from "@/stores/authStore";
+import Category from "@/components/Category.vue";
+import axiosInstance from "@/services/HttpClient";
+import { onMounted, ref } from "vue";
+
 
 export default {
   name: "HomeView",
@@ -47,12 +54,15 @@ export default {
     Input,
     MultiImageUploader,
     toast,
+    Category
   },
   props: {},
   setup() {
     const authStore = useAuthStore();
     const defaultImages = ref([]);
     const para = ref("");
+    const categories = ref([]);
+
     const handleButtonClick = () => {
       toast.success("Clicked");
     };
@@ -68,6 +78,23 @@ export default {
       console.log(index);
     };
 
+    onMounted(() => {
+      // get all categories
+      const fetchCategories = async () => {
+        try {
+
+          const response = await axiosInstance.get("/product/category");
+          categories.value = response.data.categories;
+        } catch (error) {
+          console.error(error);
+        }
+
+      };
+      fetchCategories();
+
+      
+    })
+
     return {
       handleButtonClick,
       para,
@@ -76,6 +103,7 @@ export default {
       handleUpload,
       handleRemove,
       authStore,
+      categories
     };
   },
 };
